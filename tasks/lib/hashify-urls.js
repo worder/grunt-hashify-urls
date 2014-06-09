@@ -68,10 +68,6 @@ module.exports = function (content, options) {
     match = regex.exec(content);
   }
 
-  // Skip out if there's nothing to replace
-  if (!matches.length) {
-    return content;
-  }
 
   // Iterate through the url-hash pairs, globally replace all instances of the
   // uri->hash pair per pass.
