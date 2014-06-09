@@ -13,7 +13,15 @@ function generateHash(path) {
     return cache[path];
   }
 
-  var content = fs.readFileSync(path);
+  var content;
+  try {
+    content = fs.readFileSync(path);
+  } catch (err) {
+    console.warn(path, 'not found');
+  }
+
+  if (!content) return;
+
   var hash = crypto
     .createHash('md5')
     .update(content)
@@ -45,15 +53,14 @@ module.exports = function (content, options) {
     if (!/^(http|https|data):/.test(normalizedUri)) {
       // Resolve relative path to full FS path
       var resourcePath = path.join(baseDir, url.parse(normalizedUri).pathname);
+      var hash = generateHash(resourcePath);
 
-      try {
+      if (hash) {
         matches.push({
           originalUri: uri,
           normalizedUri: normalizedUri,
-          hash: generateHash(resourcePath)
+          hash: hash
         });
-      } catch (err) {
-        console.warn(resourcePath, 'not found');
       }
     }
 
