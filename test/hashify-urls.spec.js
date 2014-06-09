@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var hashifyUrls = require('../src/hashify-urls.js');
+var hashifyUrls = require('../tasks/lib/hashify-urls.js');
 
 function run(input) {
   return hashifyUrls(input, {
@@ -28,6 +28,26 @@ describe('hashify-urls', function () {
         hashLength: 8,
         baseDir: __dirname + '/resources'
       })).to.equal(output);
+    });
+  });
+
+  describe('url surrounded by quotation marks', function () {
+    it('appends hash', function () {
+      var input = '.class1 { background: url("/images/blank.gif"); }'
+        + '.class2 { background: url(\'/images/github.png\') }';
+      var output = '.class1 { background: url(/images/blank.gif?v=b44917055649); }'
+        + '.class2 { background: url(/images/github.png?v=cefc20232703) }';
+
+      expect(run(input)).to.equal(output);
+    });
+  });
+
+  describe('url surrounded by whitespace', function () {
+    it('appends hash', function () {
+      var input = '.class1 { background: url(  /images/blank.gif  ); }';
+      var output = '.class1 { background: url(/images/blank.gif?v=b44917055649); }';
+
+      expect(run(input)).to.equal(output);
     });
   });
 
