@@ -1,7 +1,7 @@
 {
   "name": "grunt-hashify-urls",
   "version": "0.1.0",
-  "description": "Append MD5 hashes to CSS resource URLs for CDN cache-busting",
+  "description": "Grunt task for appending cache-busting MD5 hashes to CSS url()’s",
   "scripts": {
     "test": "mocha test/*.js"
   },
