@@ -21,8 +21,6 @@ function generateHash(path) {
 
   cache[path] = hash;
 
-  // Not worried about collisions since this is just for cache busting, so just
-  // use a shorter string here
   return hash;
 }
 
