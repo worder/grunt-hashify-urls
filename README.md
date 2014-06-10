@@ -1,5 +1,7 @@
 # grunt-hashify-urls
 
++[![Build Status](http://img.shields.io/travis/thatmarvin/grunt-hashify-urls.svg)](http://travis-ci.org/thatmarvin/grunt-hashify-urls)
+
 This Grunt task searches CSS files for `url(…)`s, gets the MD5 hash of the referenced resource (background images, web fonts etc), and then appends a query string to the url to bust CDN caches. For example, `.class { background: url(/images/blank.gif); }` becomes `.class { background: url(/images/blank.gif?v=b44917055649); }`.
 
 It does _not_ do anything for:
