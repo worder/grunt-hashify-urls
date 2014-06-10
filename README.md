@@ -38,10 +38,8 @@ grunt.initConfig({
     options: {
       baseDir: 'public'
     },
-    dist: {
-      files: {
-        'css/build.css': ['css/global.css', 'css/component.css']
-      }
+    files: {
+      src: ['public/css/common.css', 'public/css/page.css']
     }
   }
 });
