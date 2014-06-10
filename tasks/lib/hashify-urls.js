@@ -88,8 +88,8 @@ module.exports = function (content, options) {
     //
     // The match expression is surrounded by brackets so that subsequent passes
     // do not replace url()'s that have already been replaced.
-    var expresssion = ['(', match.originalUri, ')'].join('');
-    var escapedEx   = expresssion.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    var expression  = ['(', match.originalUri, ')'].join('');
+    var escapedEx   = expression.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
     var match       = new RegExp(escapedEx, 'gi');
     var replacement = ['(', url.format(uriObj), ')'].join('');
 
