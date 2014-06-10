@@ -20,7 +20,7 @@ describe('hashify-urls', function () {
   });
 
 
-  describe('relative urls that starts with "../"', function () {
+  describe('relative urls that start with "../"', function () {
     it('appends hash', function () {
       var input = '.class1 { background: url(../images/blank.gif); }';
       var output = '.class1 { background: url(../images/blank.gif?v=b44917055649); }';
