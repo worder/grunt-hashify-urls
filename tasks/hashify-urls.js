@@ -20,6 +20,8 @@ module.exports = function (grunt) {
       }).map(function (filepath) {
         // Read file source.
         var content = grunt.file.read(filepath);
+
+        options.cssPath = filepath;
         var hashified = hashifyUrls(content, options);
 
         grunt.file.write(filepath, hashified);

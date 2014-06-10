@@ -36,6 +36,7 @@ function generateHash(path) {
 module.exports = function (content, options) {
   options = options || {};
   var baseDir = options.baseDir || process.cwd();
+  var cssPath = path.dirname(options.cssPath) || baseDir;
   var hashLength = options.hashLength || 12;
 
   var regex   = /url\((.+?)\)/gi;
@@ -52,7 +53,9 @@ module.exports = function (content, options) {
     // Filter out blank, absolute and data urls
     if (!/^(http|https|data):/.test(normalizedUri)) {
       // Resolve relative path to full FS path
-      var resourcePath = path.join(baseDir, url.parse(normalizedUri).pathname);
+      var resourcePath = /^\.\.\//.test(normalizedUri)
+        ? path.join(cssPath, normalizedUri)
+        : path.join(baseDir, url.parse(normalizedUri).pathname);
       var hash = generateHash(resourcePath);
 
       if (hash) {

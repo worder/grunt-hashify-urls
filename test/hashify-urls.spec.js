@@ -19,6 +19,19 @@ describe('hashify-urls', function () {
     });
   });
 
+
+  describe('relative urls that starts with "../"', function () {
+    it('appends hash', function () {
+      var input = '.class1 { background: url(../images/blank.gif); }';
+      var output = '.class1 { background: url(../images/blank.gif?v=b44917055649); }';
+
+      expect(hashifyUrls(input, {
+        baseDir: __dirname + '/resources',
+        cssPath: __dirname + '/resources/css/test.css'
+      })).to.equal(output);
+    });
+  });
+
   describe('hash length specified', function () {
     it('returns the hash in the specified length', function () {
       var input = '.class1 { background: url(/images/blank.gif); }'
