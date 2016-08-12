@@ -4,7 +4,7 @@ var hashifyUrls = require('./lib/hashify-urls.js');
 
 module.exports = function (grunt) {
   grunt.registerMultiTask('hashifyUrls', 'Hashify CSS url()’s.', function () {
-    var options = this.options;
+    var options = this.options();
 
     // Iterate over all src-dest file pairs.
     this.files.forEach(function (f) {
