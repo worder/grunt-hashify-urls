@@ -54,7 +54,7 @@ module.exports = function (content, options) {
     if (!/^(http|https|data):/.test(normalizedUri)) {
       // Resolve relative path to full FS path
       var resourcePath = /^\.\.\//.test(normalizedUri)
-        ? path.join(cssPath, normalizedUri)
+        ? path.join(cssPath, url.parse(normalizedUri).pathname)
         : path.join(baseDir, url.parse(normalizedUri).pathname);
       var hash = generateHash(resourcePath);
 
